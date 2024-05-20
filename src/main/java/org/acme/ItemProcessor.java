@@ -7,7 +7,15 @@ import org.apache.camel.Processor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import jakarta.enterprise.context.Dependent;
+import jakarta.inject.Inject;
+
+
+@Dependent
 public class ItemProcessor implements Processor {
+	
+	@Inject
+	private BuffService buffService;
 
 	@Override
 	public void process(Exchange exchange) throws Exception {
@@ -20,9 +28,10 @@ public class ItemProcessor implements Processor {
 		itemBuff.setValorVendido(convertValue.getValorVendido());
 		itemBuff.setValorRecebido(convertValue.getValorRecebido());
 		System.out.println(convertValue);
-		String buff = new BuffService().toBuff("FluxoITEM", itemBuff, ItemBuff.class);
-		
-		System.out.println(buff);
+		String buff = buffService.toBuff(itemBuff, ItemBuff.class);		
+		System.out.println("toBuff -> " + buff);
+		ItemBuff fromBuff = buffService.fromBuff(buff, ItemBuff.class);
+		System.out.println("from buff -> " + fromBuff);
 	}
 
 }

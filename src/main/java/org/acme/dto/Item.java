@@ -9,15 +9,15 @@ public class Item {
 
 	private String item;
 
-	private double valorVendido;
+	private Double valorVendido;
 
-	private double valorRecebido;
+	private Double valorRecebido;
 
-	private int valorComprado;
+	private Double valorComprado;
 
-	private int fee;
+	private Double fee;
 
-	private double lucro;
+	private Double lucro;
 
 	private String dataCompra;
 
